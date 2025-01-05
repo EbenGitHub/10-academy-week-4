@@ -7,34 +7,29 @@ import pandas as pd
 app = FastAPI()
 
 # Load the trained model
-# model = joblib.load("sales_model.pkl")  # Replace with the actual model path
+model = joblib.load("../models/sales_model.pkl")
 
 # Define the input data structure
-# class SalesPredictionRequest(BaseModel):
-#     Store: int
-#     DayOfWeek: int
-#     Promo: int
-#     StateHoliday: str
-#     SchoolHoliday: int
-#     CompetitionDistance: float
-#     Year: int
-#     Month: int
-#     Weekday: int
+class SalesPredictionRequest(BaseModel):
+    Store: int
+    DayOfWeek: int
+    Promo: int
+    StateHoliday: str
+    SchoolHoliday: int
+    CompetitionDistance: float
+    Year: int
+    Month: int
+    Weekday: int
 
 
-# @app.post("/predict")
-# def predict_sales(input_data: SalesPredictionRequest):
-#     try:
-#         # Convert input data to a DataFrame
-#         data = pd.DataFrame([input_data.dict()])
-        
-#         # Make a prediction
-#         prediction = model.predict(data)
-        
-#         # Return the prediction
-#         return {"predicted_sales": prediction[0]}
-#     except Exception as e:
-#         raise HTTPException(status_code=500, detail=f"An error occurred: {str(e)}")
+@app.get("/predict")
+def predict_sales(input_data: SalesPredictionRequest):
+    try:
+        data = pd.DataFrame([input_data.dict()])        
+        prediction = model.predict(data)        
+        return {"predicted_sales": prediction[0]}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"An error occurred: {str(e)}")
 
 @app.get("/")
 def read_root():
