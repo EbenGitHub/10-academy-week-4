@@ -1,6 +1,7 @@
 import pandas as pd
 import gdown
 import zipfile
+from typing import Tuple
 
 data_output_path = "../data/"
 
@@ -13,10 +14,14 @@ def download_file(download_url: str, output_path=f"{data_output_path}rossmann_da
         zip_ref.extractall(f"{data_output_path}rossmann_data")
 
 
-def load_file() -> pd.DataFrame:
+def load_file() -> Tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame, pd.DataFrame]:
     csv_file_path = f"{data_output_path}rossmann_data/"
     store_data = pd.read_csv(f"{csv_file_path}store.csv")
     train_data = pd.read_csv(f"{csv_file_path}train.csv")
     test_data = pd.read_csv(f"{csv_file_path}test.csv")
     sample_submission = pd.read_csv(f"{csv_file_path}sample_submission.csv")
     return store_data, train_data, test_data, sample_submission
+
+def save_file(data: pd.DataFrame, file_name: str) -> None:
+    file_path = f"{data_output_path}{file_name}"
+    data.to_csv(file_path, index=False)
