@@ -4,3 +4,7 @@ numpy
 scipy
 matplotlib
 seaborn
+
+fastapi
+uvicorn
+joblib
