@@ -1,3 +1,4 @@
 /data/rossmann_data.*
 /data/rossmann_data
 /data/cleaned*
+/models/sales_model*

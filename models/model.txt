@@ -1,0 +1,3 @@
+go through task 2 notebook 
+this is where the trained model is stored
+git ignored because it is large data
