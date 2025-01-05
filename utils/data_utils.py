@@ -21,3 +21,7 @@ def load_file() -> Tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame, pd.DataFrame]
     test_data = pd.read_csv(f"{csv_file_path}test.csv")
     sample_submission = pd.read_csv(f"{csv_file_path}sample_submission.csv")
     return store_data, train_data, test_data, sample_submission
+
+def save_file(data: pd.DataFrame, file_name: str) -> None:
+    file_path = f"{data_output_path}{file_name}"
+    data.to_csv(file_path, index=False)
