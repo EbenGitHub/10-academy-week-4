@@ -25,3 +25,7 @@ def load_file() -> Tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame, pd.DataFrame]
 def save_file(data: pd.DataFrame, file_name: str) -> None:
     file_path = f"{data_output_path}{file_name}"
     data.to_csv(file_path, index=False)
+
+def open_file(file_name: str) -> pd.DataFrame:
+    file_path = f"{data_output_path}{file_name}"
+    return pd.read_csv(file_path)
